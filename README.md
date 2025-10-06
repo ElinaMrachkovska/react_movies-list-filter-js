@@ -10,18 +10,6 @@ The `App`contains a `MoviesList` and a search field. Implement filtering using a
 - ignore leading and trailing spaces;
 - search should be case insensitive (`Inception` can be found by entering `inc` or `Inc` or even `iNC`).
 
-
-520 / 5 000
-`App` містить `MoviesList` та поле пошуку. Реалізуйте фільтрацію за допомогою хука `useState`.
-
-> Ось [робоча версія](https://mate-academy.github.io/react_movies-list-filter/)
-
-- При кожній зміні зберігайте вхідне значення в `query';
-- створіть змінну `visibleMovies`, що містить відфільтровані фільми;
-- перевірте, чи `movie.title` або `movie.description` містить `query`;
-- ігноруйте початкові та кінцеві пробіли;
-- пошук має бути нечутливим до регістру (`Inception` можна знайти, ввівши `inc` або `Inc` або навіть `iNC`).
-
 ## Instructions
 - Install Prettier Extention and use this [VSCode settings](https://mate-academy.github.io/fe-program/tools/vscode/settings.json) to enable format on save.
 - Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
