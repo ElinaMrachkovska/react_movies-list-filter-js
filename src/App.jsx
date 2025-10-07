@@ -5,24 +5,25 @@ import moviesFromServer from './api/movies.json';
 
 export const App = () => {
   const [query, setQuery] = useState('');
+
   const handleQueryChange = event => {
-    setQuery(event.target.value.trimStart());
+    setQuery(event.target.value);
   };
 
   const normQuery = query.trim().toLowerCase();
 
-  if (normQuery !== '') {
-    return true;
+  let visibleMovies;
+
+  if (normQuery === '') {
+    visibleMovies = moviesFromServer;
+  } else {
+    visibleMovies = moviesFromServer.filter(movie => {
+      const title = movie.title.toLowerCase();
+      const description = movie.description.toLowerCase();
+
+      return title.includes(normQuery) || description.includes(normQuery);
+    });
   }
-
-  let visibleMovies = moviesFromServer;
-
-  visibleMovies = moviesFromServer.filter(movie => {
-    const title = movie.title.toLowerCase();
-    const description = movie.description.toLowerCase();
-
-    return title.includes(normQuery) || description.includes(normQuery);
-  });
 
   return (
     <div className="page">
