@@ -3,6 +3,21 @@ import './App.scss';
 import { MoviesList } from './components/MoviesList';
 import moviesFromServer from './api/movies.json';
 
+const getVisibleMovies = (movies, query) => {
+  const normQuery = query.trim().toLowerCase();
+
+  if (normQuery === '') {
+    return movies;
+  }
+
+  return movies.filter(movie => {
+    const title = movie.title.toLowerCase();
+    const description = movie.description.toLowerCase();
+
+    return title.includes(normQuery) || description.includes(normQuery);
+  });
+};
+
 export const App = () => {
   const [query, setQuery] = useState('');
 
@@ -10,27 +25,13 @@ export const App = () => {
     setQuery(event.target.value);
   };
 
-  const normQuery = query.trim().toLowerCase();
-
-  let visibleMovies;
-
-  if (normQuery === '') {
-    visibleMovies = moviesFromServer;
-  } else {
-    visibleMovies = moviesFromServer.filter(movie => {
-      const title = movie.title.toLowerCase();
-      const description = movie.description.toLowerCase();
-
-      return title.includes(normQuery) || description.includes(normQuery);
-    });
-  }
+  const visibleMovies = getVisibleMovies(moviesFromServer, query);
 
   return (
     <div className="page">
       <div className="page-content">
         <div className="box">
           <div className="field">
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="search-query" className="label">
               Search movie
             </label>
